@@ -1,0 +1,36 @@
+﻿<Window x:Class="BudgetTracker.View.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BudgetTracker.View"
+        mc:Ignorable="d"
+        Title="Login" Height="450" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Border CornerRadius="50">
+        
+    
+    <Border CornerRadius="50"  
+            BorderThickness="5">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#99FFFF" Offset="0"/>
+                <GradientStop Color="#005f69" Offset="0.5"/>
+                <GradientStop Color="#ffb5b5" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                <GradientStop Color="#132743" Offset="0"/>
+                <GradientStop Color="#34495e" Offset="0.5"/>
+                <GradientStop Color="#f19584" Offset="2"/>
+            </LinearGradientBrush>
+        </Border.Background>
+    </Border>
+    </Border>
+</Window>

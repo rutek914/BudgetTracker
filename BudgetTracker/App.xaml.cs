@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BudgetTracker.Model.Entities;
+using BudgetTracker.View;
+using BudgetTracker.ViewModel;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Configuration;
 using System.Data;
@@ -17,7 +21,11 @@ namespace BudgetTracker
             AppHost = Host.CreateDefaultBuilder()
                  .ConfigureServices((hostContext, services) =>
                  {
-                     services.AddSingleton<MainWindow>();
+                     services.AddTransient<MainWindow>();
+                     services.AddTransient<Login>();
+                     services.AddTransient<LoginVM>();
+                     services.AddDbContext<BudgetTrackerDbContext>(option =>
+                     option.UseSqlServer(ConfigurationManager.ConnectionStrings["BudgetTracker"].ConnectionString));
                  })
                  .Build();
         }
@@ -28,7 +36,7 @@ namespace BudgetTracker
             await AppHost!.StartAsync();
 
             // apphost.services to kontener DI który zawiera wszystkie zarejestrowane usługi i obiekty
-            var startupForm = AppHost.Services.GetRequiredService<MainWindow>();
+            var startupForm = AppHost.Services.GetRequiredService<Login>();
             startupForm.Show();
             // wywołuje wersje metody onstartup z klasy bazowej Application
             base.OnStartup(e);

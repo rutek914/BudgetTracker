@@ -11,13 +11,17 @@ namespace BudgetTracker.Model.Entities
 {
     public class BudgetTrackerDbContext : DbContext
     {
+        public BudgetTrackerDbContext(DbContextOptions<BudgetTrackerDbContext> options) : base(options)
+        {
+        }
+
         public DbSet<User> Users { get; set; }
         public DbSet<Expense> Expenses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var userId1 = Guid.Parse("8c346ce9-09d4-4982-b4f8-ab6513686382");
-
+            // entity builder = eb
             modelBuilder.Entity<User>(eb =>
             {
                 eb.Property(user => user.Username).HasColumnType("varchar(200)");
