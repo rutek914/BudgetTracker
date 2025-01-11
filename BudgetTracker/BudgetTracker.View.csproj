@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\lock.png" />
+    <None Remove="Images\logo.png" />
+    <None Remove="Images\newLogin.png" />
+    <None Remove="Images\user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -22,7 +29,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
+    <Resource Include="Images\lock.png" />
+    <Resource Include="Images\logo.png" />
+    <Resource Include="Images\newLogin.png" />
+    <Resource Include="Images\user.png" />
   </ItemGroup>
 
 </Project>

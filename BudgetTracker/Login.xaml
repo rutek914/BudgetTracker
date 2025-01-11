@@ -12,25 +12,170 @@
         MouseDown="Window_MouseDown"
         Background="Transparent"
         AllowsTransparency="True">
-    <Border CornerRadius="50">
-        
-    
-    <Border CornerRadius="50"  
-            BorderThickness="5">
-        <Border.BorderBrush>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#99FFFF" Offset="0"/>
-                <GradientStop Color="#005f69" Offset="0.5"/>
-                <GradientStop Color="#ffb5b5" Offset="1"/>
-            </LinearGradientBrush>
-        </Border.BorderBrush>
+    <Border CornerRadius="20">
         <Border.Background>
-            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                <GradientStop Color="#132743" Offset="0"/>
-                <GradientStop Color="#34495e" Offset="0.5"/>
-                <GradientStop Color="#f19584" Offset="2"/>
-            </LinearGradientBrush>
+            <ImageBrush ImageSource="/images/newLogin.png"/>
         </Border.Background>
-    </Border>
+
+        <Border CornerRadius="20"  
+            BorderThickness="3"
+            Opacity="0.9">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#99FFFF" Offset="0"/>
+                    <GradientStop Color="#005f69" Offset="0.5"/>
+                    <GradientStop Color="#ffb5b5" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#132743" Offset="0"/>
+                    <GradientStop Color="#34495e" Offset="0.5"/>
+                    <GradientStop Color="#f19584" Offset="2"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="8"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="LOG IN" Foreground="DarkGray"
+                               FontSize="10" FontFamily="Montserrat" Grid.Column="0"
+                               VerticalAlignment="Center" Margin="30,0,0,0"/>
+
+                    <Button x:Name="btnMinimize" BorderThickness="0"
+                            Content="-" Foreground="White" FontSize="16" FontFamily="Montserrat"
+                            Cursor="Hand" Grid.Column="1" Click="btnMinimize_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#3DA5FF"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#0A8DFF"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="20" Height="20" CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button x:Name="closeBtn" BorderThickness="0"
+                            Content="X" Foreground="White" FontSize="16" FontFamily="Montserrat"
+                            Cursor="Hand" Grid.Column="2" Click="closeBtn_Click" >
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="PaleVioletRed"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="MediumVioletRed"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="20" Height="20" CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                </Grid>
+
+                <StackPanel Width="250" Grid.Row="2" Orientation="Vertical" Margin="0,15,0,0">
+                    <Image Source="/images/logo.png" Width="100" Height="100"/>
+                    <TextBlock Text="Portfelik" Foreground="Bisque" FontSize="25"
+                               FontWeight="Medium" FontFamily="Montserrat"
+                               HorizontalAlignment="Center"/>
+
+                    <TextBlock Text="Im lepiej monitorujesz swoje wydatki, tym większą masz kontrolę nad swoją przyszłością."
+                               Foreground="LightGray" FontSize="12"
+                               FontWeight="Medium" FontFamily="Montserrat"
+                               TextWrapping="Wrap" TextAlignment="Center" Margin="0,5,0,0"/>
+
+                    <TextBlock Text="Username" Foreground="DarkGray" FontSize="12" FontWeight="Medium"
+                               FontFamily="Montserrat" Margin="0,35,0,0"/>
+                    <TextBox x:Name="txtUser" FontSize="13" FontWeight="Medium" FontFamily="Montserrat"
+                               Foreground="White" CaretBrush="LightGray"
+                               BorderBrush="DarkGray" BorderThickness="0,0,0,2"
+                               Height="20" VerticalAlignment="Center" Margin="0,5,0,0"
+                               Padding="30,0,0,0">
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="/images/user.png" Stretch="Uniform" AlignmentX="Left" Opacity="0.5"/>
+                        </TextBox.Background>
+                    </TextBox>
+
+                    <TextBlock Text="Password" Foreground="DarkGray" FontSize="12" FontWeight="Medium"
+                    FontFamily="Montserrat" Margin="0,15,0,0"/>
+                    <PasswordBox x:Name="txtPassword" FontSize="13" FontWeight="Medium" FontFamily="Montserrat"
+                             Foreground="White" CaretBrush="LightGray"
+                             BorderBrush="DarkGray" BorderThickness="0,0,0,2"
+                             Height="20" VerticalAlignment="Center" Margin="0,5,0,0"
+                             Padding="30,0,0,0">
+                        <PasswordBox.Background>
+                            <ImageBrush ImageSource="/Images/lock.png" Stretch="Uniform" AlignmentX="Left" Opacity="0.5"/>
+                        </PasswordBox.Background>
+                    </PasswordBox>
+
+                    <Button x:Name="loginBtn" BorderThickness="0"
+                            Content="Log in" Foreground="White" FontSize="16" FontFamily="Montserrat"
+                            Cursor="Hand" Margin="0,20,0,0" Click="closeBtn_Click" >
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#002e6b"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#00226b"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="150" Height="30" CornerRadius="15"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                        <TextBlock Text="Forgot Password?" Foreground="DarkGray"
+                                   FontSize="12" FontWeight="Medium" FontFamily="Montserrat"/>
+                        <TextBlock Text="Reset" Foreground="White" FontSize="12"
+                                   FontWeight="Medium" FontFamily="Montserrat" Cursor="Hand"
+                                   Margin="8,0,0,0"/>
+
+                    </StackPanel>
+
+
+                </StackPanel>
+
+            </Grid>
+
+        </Border>
     </Border>
 </Window>
