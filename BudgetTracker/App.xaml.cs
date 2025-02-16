@@ -1,9 +1,13 @@
 ﻿using BudgetTracker.Model.Entities;
+using BudgetTracker.Model.Repositories;
+using BudgetTracker.Model.Services;
 using BudgetTracker.View;
+using BudgetTracker.View.CustomControls;
 using BudgetTracker.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System.Configuration;
 using System.Data;
 using System.Windows;
@@ -24,6 +28,9 @@ namespace BudgetTracker
                      services.AddTransient<MainWindow>();
                      services.AddTransient<Login>();
                      services.AddTransient<LoginVM>();
+                     services.AddTransient<UserService>();
+                     services.AddScoped<IUserRepository, UserRepository>();
+                     services.AddSingleton<LoggerFactory>();
                      services.AddDbContext<BudgetTrackerDbContext>(option =>
                      option.UseSqlServer(ConfigurationManager.ConnectionStrings["BudgetTracker"].ConnectionString));
                  })
@@ -40,6 +47,14 @@ namespace BudgetTracker
             startupForm.Show();
             // wywołuje wersje metody onstartup z klasy bazowej Application
             base.OnStartup(e);
+
+            var loginvm = AppHost.Services.GetRequiredService<LoginVM>();
+
+            if (loginvm.IsViewVisible == false)
+            {
+                var mainWindow = AppHost.Services.GetRequiredService<MainWindow>();
+                mainWindow.Show();
+            }
         }
         protected override async void OnExit(ExitEventArgs e)
         {

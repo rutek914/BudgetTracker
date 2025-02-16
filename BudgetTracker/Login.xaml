@@ -4,14 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetTracker.View"
+        xmlns:viewModel="clr-namespace:BudgetTracker.ViewModel;assembly=BudgetTracker.ViewModel" xmlns:customcontrols="clr-namespace:BudgetTracker.View.CustomControls"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="800"
+        Title="Login" Height="600" Width="800"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         MouseDown="Window_MouseDown"
         Background="Transparent"
         AllowsTransparency="True">
+
+    <!--<Window.DataContext>
+        <viewModel:LoginVM/>
+    </Window.DataContext>-->
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </Window.Resources>
+
+    <Window.Visibility> 
+        <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
+    </Window.Visibility>
+    
     <Border CornerRadius="20">
         <Border.Background>
             <ImageBrush ImageSource="/images/newLogin.png"/>
@@ -116,8 +130,9 @@
 
                     <TextBlock Text="Username" Foreground="DarkGray" FontSize="12" FontWeight="Medium"
                                FontFamily="Montserrat" Margin="0,35,0,0"/>
-                    <TextBox x:Name="txtUser" FontSize="13" FontWeight="Medium" FontFamily="Montserrat"
-                               Foreground="White" CaretBrush="LightGray"
+                    <TextBox x:Name="txtUser" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
+                               FontSize="13" FontWeight="Medium"
+                               FontFamily="Montserrat" Foreground="White" CaretBrush="LightGray"
                                BorderBrush="DarkGray" BorderThickness="0,0,0,2"
                                Height="20" VerticalAlignment="Center" Margin="0,5,0,0"
                                Padding="30,0,0,0">
@@ -127,20 +142,18 @@
                     </TextBox>
 
                     <TextBlock Text="Password" Foreground="DarkGray" FontSize="12" FontWeight="Medium"
-                    FontFamily="Montserrat" Margin="0,15,0,0"/>
-                    <PasswordBox x:Name="txtPassword" FontSize="13" FontWeight="Medium" FontFamily="Montserrat"
-                             Foreground="White" CaretBrush="LightGray"
-                             BorderBrush="DarkGray" BorderThickness="0,0,0,2"
-                             Height="20" VerticalAlignment="Center" Margin="0,5,0,0"
-                             Padding="30,0,0,0">
-                        <PasswordBox.Background>
-                            <ImageBrush ImageSource="/Images/lock.png" Stretch="Uniform" AlignmentX="Left" Opacity="0.5"/>
-                        </PasswordBox.Background>
-                    </PasswordBox>
+                                FontFamily="Montserrat" Margin="0,15,0,0"/>
+                    <customcontrols:BindablePasswordBox Password="{Binding Password, Mode=TwoWay}"
+                                                        Height="20"
+                                                        Margin="0,5,0,0">
+                    </customcontrols:BindablePasswordBox>
 
-                    <Button x:Name="loginBtn" BorderThickness="0"
+                    <TextBlock Text="{Binding ErrorMessage}" Foreground="#D7596D" FontSize="12" FontWeight="Medium"
+                                FontFamily="Montserrat" Margin="0,10,0,0" TextWrapping="Wrap"/>
+
+                    <Button x:Name="loginBtn" Command="{Binding LoginCommand}" BorderThickness="0"
                             Content="Log in" Foreground="White" FontSize="16" FontFamily="Montserrat"
-                            Cursor="Hand" Margin="0,20,0,0" Click="closeBtn_Click" >
+                            Cursor="Hand" Margin="0,20,0,0">
 
                         <Button.Style>
                             <Style TargetType="Button">

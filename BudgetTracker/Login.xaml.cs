@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BudgetTracker.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,7 @@ namespace BudgetTracker.View
         public Login()
         {
             InitializeComponent();
+            DataContext = App.AppHost!.Services.GetRequiredService<LoginVM>();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
